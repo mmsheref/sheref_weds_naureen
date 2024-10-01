@@ -12,23 +12,51 @@
     body {
       font-family: 'Open Sans', sans-serif;
       text-align: center;
-      background-image: url('https://source.unsplash.com/1600x900/?wedding,flowers');
-      background-size: cover;
-      background-position: center;
       padding-top: 100px;
       color: white;
+      background: linear-gradient(45deg, #ffafbd, #ffc3a0, #ff69b4, #ff6a6a, #ffb7b2);
+      background-size: 300% 300%;
+      animation: backgroundAnimate 10s ease infinite;
     }
+
+    /* Animated gradient background */
+    @keyframes backgroundAnimate {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     h1 {
-      color: #ff69b4;
+      color: #ffffff;
       font-size: 70px;
       font-family: 'Great Vibes', cursive;
+      animation: fadeIn 3s ease-in-out;
     }
+
     h2 {
       color: #ffffff;
       font-size: 30px;
+      margin-bottom: 50px;
+      animation: fadeIn 4s ease-in-out;
     }
+
     #countdown {
-      font-size: 40px;
+      font-size: 50px;
+      color: #ffffff;
+      animation: pulse 1s infinite;
+    }
+
+    /* Fade-in animation for titles */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Pulse animation for countdown */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
