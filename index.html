@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sheref Weds Naureen Countdown</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      padding-top: 100px;
+    }
+    h1 {
+      color: #ff69b4;
+      font-size: 50px;
+    }
+    #countdown {
+      font-size: 40px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sheref Weds Naureen</h1>
+  <h2>Wedding Countdown</h2>
+  <div id="countdown"></div>
+
+  <script>
+    // Set the date for the wedding
+    var weddingDate = new Date("2024-10-31T00:00:00").getTime();
+
+    // Update the countdown every second
+    var countdownFunction = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = weddingDate - now;
+
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = days + "d " + hours + "h " +
+        minutes + "m " + seconds + "s ";
+
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "It's the wedding day!";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
