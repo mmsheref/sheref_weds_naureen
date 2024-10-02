@@ -7,9 +7,9 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/css/flipclock.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.js"></script>
+
+    <!-- FlipClock CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css">
 
     <style>
         body {
@@ -19,6 +19,7 @@
             color: white;
             background: linear-gradient(45deg, #ffafbd, #ffc3a0, #ff69b4, #ff6a6a, #ffb7b2);
             animation: backgroundAnimate 10s ease infinite;
+            background-size: 300% 300%;
         }
 
         @keyframes backgroundAnimate {
@@ -70,28 +71,37 @@
         <img src="./naureen.jpg" alt="Naureen">
     </div>
 
-    <script>
-        var weddingDate = new Date("2024-10-31T00:00:00").getTime();
-        
-        // Initialize FlipClock
-        var clock = $('#countdown').FlipClock((weddingDate - new Date().getTime()) / 1000, {
-            clockFace: 'DailyCounter',
-            countdown: true,
-            autoStart: true,
-            callbacks: {
-                stop: function() {
-                    document.getElementById("countdown").innerHTML = "It's the wedding day!";
-                }
-            }
-        });
+    <!-- jQuery and FlipClock.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
 
-        setInterval(function() {
+    <script>
+        $(document).ready(function() {
+            var weddingDate = new Date("2024-10-31T00:00:00").getTime();
             var now = new Date().getTime();
-            if (now > weddingDate) {
-                clock.stop();
-                document.getElementById("countdown").innerHTML = "It's the wedding day!";
-            }
-        }, 1000);
+            var seconds = (weddingDate - now) / 1000; // Convert milliseconds to seconds
+
+            // Initialize FlipClock
+            var clock = $('#countdown').FlipClock(seconds, {
+                clockFace: 'DailyCounter',
+                countdown: true,
+                autoStart: true,
+                callbacks: {
+                    stop: function() {
+                        $('#countdown').html("It's the wedding day!");
+                    }
+                }
+            });
+
+            // Optional: Stop the clock after the wedding date
+            setInterval(function() {
+                var now = new Date().getTime();
+                if (now >= weddingDate) {
+                    clock.stop();
+                    $('#countdown').html("It's the wedding day!");
+                }
+            }, 1000);
+        });
     </script>
 
 </body>
