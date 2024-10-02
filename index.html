@@ -43,6 +43,21 @@
             display: inline-block;
             font-size: 24px;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            animation: colorChange 5s infinite;
+        }
+
+        /* Dynamic Color Animation for the Clock */
+        @keyframes colorChange {
+            0% { color: #ff69b4; }
+            25% { color: #ffafbd; }
+            50% { color: #ffc3a0; }
+            75% { color: #ff6a6a; }
+            100% { color: #ffb7b2; }
+        }
+
+        /* Remove "Days", "Hours", "Minutes", "Seconds" Labels */
+        .clock .flip-clock-label {
+            display: none;
         }
 
         .couple-pics {
